@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover ">
+<title>For NAJMAH❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+color:#333;
+padding:20px;
+transition:1s;
+}
+
+/* Unlock Screen */
+#unlockScreen{
+text-align:center;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+input{
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+margin-top:10px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+margin:10px;
+transition:0.3s;
+}
+
+.main{
+display:none;
+text-align:center;
+background:white;
+padding:25px;
+border-radius:25px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+width:90%;
+max-width:350px;
+position:relative;
+}
+
+/* Instagram style */
+.photo{
+width:100%;
+border-radius:20px;
+margin-top:15px;
+}
+
+/* Shake */
+.shake{animation:shake 0.3s;}
+@keyframes shake{
+0%,100%{transform:translate(0)}
+25%{transform:translate(5px,-5px)}
+50%{transform:translate(-5px,5px)}
+75%{transform:translate(5px,5px)}
+}
+
+/* Hearts */
+.heart{
+position:absolute;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1}
+100%{transform:translateY(-10vh);opacity:0}
+}
+
+/* Confetti */
+.confetti{
+position:absolute;
+width:8px;height:8px;
+animation:fall 3s linear forwards;
+}
+@keyframes fall{
+to{transform:translateY(100vh) rotate(720deg);opacity:0}
+}
+
+/* Ring animation */
+.ring{
+font-size:50px;
+animation:pulse 1s infinite;
+}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.3)}
+100%{transform:scale(1)}
+}
+/* Love letter popup */
+#letter {
+    display:none;
+    position:fixed;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    z-index:5;
+}
+#letter button {
+    background:#ff4b5c;
+    color:white;
+    margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="unlockScreen">
+<h2>Enter Ur Partner Name😏💌</h2>
+<input type="password" id="password" placeholder="CAPITAL LETTERS">
+<br>
+<button onclick="unlock()">Unlock</button>
+<p id="wrong" style="color:red;"></p>
+</div>
+
+<div id="letter">
+    <h2>WARNING</h2>
+    <p></p>  
+    <p>TOUCH 10 TIMES ON UR SCREEN WHEN U REACH A PHOTO😉💕</p>
+    <button onclick="closeLetter()">Close</button>
+</div>
+
+<div class="main" id="mainContent">
+<h2 id="typing"></h2>
+<p id="countdown"></p>
+<button id="yesBtn">Yesss🥺💖</button>
+<button id="noBtn">Nooo😢</button>
+</div>
+
+<audio id="music" loop>
+<audio src="caribbean.mp3"><audio>
+</audio>
+
+<script>
+const correctPassword="HISHAAM";
+
+/* Unlock */
+function unlock(){
+let input=document.getElementById("password").value;
+if(input===correctPassword){
+document.getElementById("unlockScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
+document.getElementById("music").play();
+typeWriter();
+}else{
+document.getElementById("wrong").innerHTML="Wrong code🙄";
+}
+}
+
+/* Typing */
+const text="NAJMAH, Will You Be My Valentine?🥺❤️";
+let i=0;
+function typeWriter(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeWriter,50);
+}
+}
+
+/* Countdown */
+let timeLeft=100;
+let timer=setInterval(()=>{
+document.getElementById("countdown").innerHTML=
+"You have "+timeLeft+" seconds 😏";
+timeLeft--;
+if(timeLeft<0){
+clearInterval(timer);
+document.getElementById("countdown").innerHTML=
+"Just press YES already🥺";
+}
+},1000);
+
+/* Buttons */
+const noBtn=document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
+let yesSize=18,noSize=18;
+
+noBtn.addEventListener("mouseover",()=>{
+document.body.classList.add("shake");
+setTimeout(()=>document.body.classList.remove("shake"),20);
+
+noBtn.style.position="absolute";
+noBtn.style.left=Math.random()*80+"vw";
+noBtn.style.top=Math.random()*80+"vh";
+
+if(noSize>8){noSize-=2;noBtn.style.fontSize=noSize+"px";}
+yesSize+=6;yesBtn.style.fontSize=yesSize+"px";
+});
+
+/* YES */
+yesBtn.addEventListener("click",()=>{
+document.body.innerHTML=`
+<h1 style="color:white;text-align:center;">je taime mo ti bebe lamour🥺💕</h1>
+<div class="ring">💍</div>
+<img src="Screenshot_20260212_171059_com.huawei.himovie.overseas.jpg" width="100"</img>
+`;
+
+for(let i=0;i<150;i++){
+let c=document.createElement("div");
+c.classList.add("confetti");
+c.style.left=Math.random()*100+"vw";
+c.style.background="hsl("+Math.random()*360+",100%,50%)";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+});
+
+/* Hearts */
+function createHeart(){
+const h=document.createElement("div");
+h.classList.add("heart");
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*20+20)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,300);
+
+
+/* Secret Tap Counter */
+let tapCount = 0;
+
+document.addEventListener("click", function() {
+    tapCount++;
+
+    if (tapCount === 10) {
+        activateProposal();
+    }
+});
+
+function activateProposal() {
+    document.body.innerHTML = `
+    <div style="
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+        background:linear-gradient(135deg,#ff4b5c,#ff758c);
+        color:white;
+        text-align:center;
+    ">
+        <h1 style="font-size:40px;">💍 Surprise 💍</h1>
+        <h2>NAJMAH, Demain nu zouen😁❤️?</h2>
+        <div style="font-size:90px; animation:pulse 1s infinite;">💍</div>
+
+        <button onclick="finalYes()" 
+            style="
+            padding:15px 35px;
+            font-size:22px;
+            border:none;
+            border-radius:20px;
+            background:white;
+            color:#ff4b5c;
+            cursor:pointer;
+            margin-top:20px;">
+            YESSSS❤️
+        </button>
+    </div>
+
+    <style>
+    @keyframes pulse{
+        0%{transform:scale(1)}
+        50%{transform:scale(1.3)}
+        100%{transform:scale(1)}
+    }
+    </style>
+    `;
+}
+
+function finalYes(){
+    document.body.innerHTML = `
+    <div style="
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(135deg,#ff758c,#ff7eb3);
+        color:white;
+        text-align:center;">
+        <h1 style="font-size:50px;">
+     JE TAIME MAMAN🥺❤️💋
+        </h1>
+    </div>
+    `;
+}
+
+setInterval(createHeart,300);
+
+/* Love letter popup */
+setTimeout(()=>{document.getElementById("letter").style.display="block";},5000);
+function closeLetter(){
+    document.getElementById("letter").style.display="none";
+}
+
+
+</script>
+
+</body>
+</html>
